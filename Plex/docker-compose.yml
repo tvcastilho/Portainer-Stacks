@@ -14,3 +14,17 @@ services:
       - /home/thiago/DRIVE/Media/series:/tv
       - /home/thiago/DRIVE/Media/movies:/movies
     restart: unless-stopped
+  
+  deluge:
+    image: ghcr.io/linuxserver/deluge
+    container_name: deluge
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /home/thiago/Docker/Deluge/config:/config
+      - /home/thiago/Docker/Deluge/downloads:/downloads
+    restart: unless-stopped
